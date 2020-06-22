@@ -181,6 +181,118 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-syn-mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/22/syn-mysql/">使用Docker同步mysql数据</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/22/syn-mysql/" class="archive-article-date">
+  	<time datetime="2020-06-22T10:05:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><blockquote>
+<p>目标：两个环境的数据库要定期同步数据库中的配置表数据需要使用定时任务去做<br>环境：基于容器环境，使用K8s的CornJob实现定时任务</p>
+</blockquote>
+<p>要在容器中使用，所以同步的脚本要写在镜像环境中</p>
+<h2 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h2><p>同步数据包括两部分</p>
+<ol>
+<li>数据从原数据库中导出</li>
+<li>数据在目标库导入</li>
+</ol>
+<p>导出可以使用mysqldump 去实现<br>导入只能使用mysql客户端登录成功后 使用source 命令导入数据<br>因为要程序去自动化处理，所以登录数据库并导入数据的动作也要使用脚本去处理<br>可以使用 expect 程序去实现自动交互<br>
+        
+          <a class="article-more-a" href="/2020/06/22/syn-mysql/#more">more >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">k8s</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/22/syn-mysql/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-harbor-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1130,116 +1242,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-square7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/17/square7/">造一个方形的轮子7--Controller支持（下）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/17/square7/" class="archive-article-date">
-  	<time datetime="2019-07-17T05:00:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>造一个方形轮子文章目录：<a href="/2019/06/18/square0/">造一个方形的轮子</a></p>
-</blockquote>
-<h3 id="01、添加DispatcherServlet"><a href="#01、添加DispatcherServlet" class="headerlink" title="01、添加DispatcherServlet"></a>01、添加DispatcherServlet</h3><p>接上一篇<a href="/2019/07/17/square6">《造一个方形的轮子6–Controller支持（上）》</a><br>接下来添加处理HTTP请求最核心的类DispatcherServlet，JAVA里提供的最原始的支持WEB的标准就是Servlet规范，类似Tomcat、Jetty都实现了Servlet规范，所以添加一个DispatcherServlet类配置到Tomcat容器中，接管所以路径的请求，在统一处理，就可以实现我们的目的，整理一下DispatcherServlet类的处理流程：</p>
-<blockquote>
-<p>1、获取HTTP请求类型、ContextPath及RequestURI</p>
-<p>2、使用<code>HTTP请求类型:请求路径</code>到Beans容器中获取对应的ControllerObject对象</p>
-<p>3、如果没有对应的方法映射则返回404</p>
-<p>4、有对应的方法，则根据参数列表从request中获取对应的参数</p>
-<p>5、使用反射方法执行对应的方法并获取返回结果</p>
-<p>6、如果返回结果是String类型直接返回，其它类型使用JSON序列化后输出</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/07/17/square7/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">轮子</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">square</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/17/square7/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1442,15 +1444,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原理</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">轮子</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">square</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">原理</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1462,11 +1464,19 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">k8s</a>
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">k8s</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
               <li class="article-tag-list-item">

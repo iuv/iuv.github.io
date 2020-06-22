@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://jianpage.com">
-  <title>2017年终总结 | 简页&amp;blog</title>
+  <title>使用Docker同步mysql数据 | 简页&amp;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="又双叒叕到了年终算账的时候了，这一年又欠下多少呢？    再有3天2017年就这么过完了，不知道什么时候开始，感觉一年快的像一个月一样，真的是在不知不觉中就过去了。反应过来的时候才发现自己这一年又欠下了太多，年初做的计划真真就只是个计划，2018年要做的很简单–&amp;gt;”用心” 关于工作2017年是计划赶不上变化的一年，工作上又经历了许多之前没经历过的事，涨了不少经验，也对许多以前不了解的领域有">
-<meta name="keywords" content="心情">
+  <meta name="description" content="一、背景 目标：两个环境的数据库要定期同步数据库中的配置表数据需要使用定时任务去做环境：基于容器环境，使用K8s的CornJob实现定时任务  要在容器中使用，所以同步的脚本要写在镜像环境中 二、分析同步数据包括两部分  数据从原数据库中导出 数据在目标库导入  导出可以使用mysqldump 去实现导入只能使用mysql客户端登录成功后 使用source 命令导入数据因为要程序去自动化处理，所以">
+<meta name="keywords" content="技术,k8s,docker,mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017年终总结">
-<meta property="og:url" content="http://jianpage.com/2017/12/28/2017/index.html">
+<meta property="og:title" content="使用Docker同步mysql数据">
+<meta property="og:url" content="http://jianpage.com/2020/06/22/syn-mysql/index.html">
 <meta property="og:site_name" content="简页&amp;blog">
-<meta property="og:description" content="又双叒叕到了年终算账的时候了，这一年又欠下多少呢？    再有3天2017年就这么过完了，不知道什么时候开始，感觉一年快的像一个月一样，真的是在不知不觉中就过去了。反应过来的时候才发现自己这一年又欠下了太多，年初做的计划真真就只是个计划，2018年要做的很简单–&amp;gt;”用心” 关于工作2017年是计划赶不上变化的一年，工作上又经历了许多之前没经历过的事，涨了不少经验，也对许多以前不了解的领域有">
+<meta property="og:description" content="一、背景 目标：两个环境的数据库要定期同步数据库中的配置表数据需要使用定时任务去做环境：基于容器环境，使用K8s的CornJob实现定时任务  要在容器中使用，所以同步的脚本要写在镜像环境中 二、分析同步数据包括两部分  数据从原数据库中导出 数据在目标库导入  导出可以使用mysqldump 去实现导入只能使用mysql客户端登录成功后 使用source 命令导入数据因为要程序去自动化处理，所以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-12T06:57:27.000Z">
+<meta property="og:updated_time" content="2020-06-22T09:59:15.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017年终总结">
-<meta name="twitter:description" content="又双叒叕到了年终算账的时候了，这一年又欠下多少呢？    再有3天2017年就这么过完了，不知道什么时候开始，感觉一年快的像一个月一样，真的是在不知不觉中就过去了。反应过来的时候才发现自己这一年又欠下了太多，年初做的计划真真就只是个计划，2018年要做的很简单–&amp;gt;”用心” 关于工作2017年是计划赶不上变化的一年，工作上又经历了许多之前没经历过的事，涨了不少经验，也对许多以前不了解的领域有">
+<meta name="twitter:title" content="使用Docker同步mysql数据">
+<meta name="twitter:description" content="一、背景 目标：两个环境的数据库要定期同步数据库中的配置表数据需要使用定时任务去做环境：基于容器环境，使用K8s的CornJob实现定时任务  要在容器中使用，所以同步的脚本要写在镜像环境中 二、分析同步数据包括两部分  数据从原数据库中导出 数据在目标库导入  导出可以使用mysqldump 去实现导入只能使用mysql客户端登录成功后 使用source 命令导入数据因为要程序去自动化处理，所以">
   
     <link rel="alternative" href="/atom.xml" title="简页&amp;blog" type="application/atom+xml">
   
@@ -181,34 +181,56 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-syn-mysql" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      2017年终总结
+      使用Docker同步mysql数据
     </h1>
   
 
         
-        <a href="/2017/12/28/2017/" class="archive-article-date">
-  	<time datetime="2017-12-28T04:29:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+        <a href="/2020/06/22/syn-mysql/" class="archive-article-date">
+  	<time datetime="2020-06-22T10:05:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>又双叒叕到了年终算账的时候了，这一年又欠下多少呢？  </p>
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><blockquote>
+<p>目标：两个环境的数据库要定期同步数据库中的配置表数据需要使用定时任务去做<br>环境：基于容器环境，使用K8s的CornJob实现定时任务</p>
 </blockquote>
-<p>再有3天2017年就这么过完了，不知道什么时候开始，感觉一年快的像一个月一样，真的是在不知不觉中就过去了。反应过来的时候才发现自己这一年又欠下了太多，年初做的计划真真就只是个计划，2018年要做的很简单–&gt;”用心”</p>
-<h2 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于工作</h2><p>2017年是计划赶不上变化的一年，工作上又经历了许多之前没经历过的事，涨了不少经验，也对许多以前不了解的领域有了初步的认识，个人觉得应该是好事，让我明确了自己想要什么，同时也认识到了自己的不足，待人处事还是过于稚嫩，以后要学着成熟一点。<br><a id="more"></a></p>
-<h2 id="关于家庭"><a href="#关于家庭" class="headerlink" title="关于家庭"></a>关于家庭</h2><p>2017年亏欠最多的就是家人，年初计划的旅游到年底也没能去成，唉！影响因素太多，其它种种，2018年一定补上。</p>
-<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>2017年做了太多喜欢但意义不大的事，比如 <a href="http://jianpage.com">简页</a>，虽然不能说完全无用，但对个人的成长帮助不大，不过以后我还是会继续维护，有自己喜欢的功能还是会找时间添加，只是不会占用太多的时间了，人到了一定年纪，时间明显不够用了。。。<br>2018年希望自己能真真正正规划一下自己，闭着眼睛走了这么多年，是时候正视一下前方的路了。还要多开阔一下视野，多练习从长远（全局）的角度考虑问题。努力吧，要学的东西还有很多。</p>
-<p>2018年再总结，定不会这么惨烈！！！</p>
+<p>要在容器中使用，所以同步的脚本要写在镜像环境中</p>
+<h2 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h2><p>同步数据包括两部分</p>
+<ol>
+<li>数据从原数据库中导出</li>
+<li>数据在目标库导入</li>
+</ol>
+<p>导出可以使用mysqldump 去实现<br>导入只能使用mysql客户端登录成功后 使用source 命令导入数据<br>因为要程序去自动化处理，所以登录数据库并导入数据的动作也要使用脚本去处理<br>可以使用 expect 程序去实现自动交互<br><a id="more"></a></p>
+<h2 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h2><p>导出命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h192.168.1.8 -uroot -p123456 a abc &gt; abc.sql</span><br></pre></td></tr></table></figure></p>
+<p>该命令将导出192.168.1.8环境中a数据库的abc表，并将表结构及数据保存到abc.sql文件中<br>导入命令（in.sh文件)：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/expect</span></span><br><span class="line"><span class="built_in">set</span> timmeout -1</span><br><span class="line">spawn bash -c <span class="string">"mysql -h 192.168.1.8 -u root -p"</span></span><br><span class="line">expect <span class="string">"password:"</span></span><br><span class="line">send <span class="string">"123456\r"</span></span><br><span class="line">expect <span class="string">"mysql&gt;"</span></span><br><span class="line">send <span class="string">"use b\r"</span></span><br><span class="line">expect <span class="string">"mysql&gt;"</span></span><br><span class="line">send <span class="string">"source /abc.sql\r"</span></span><br><span class="line">expect <span class="string">"mysql&gt;"</span></span><br><span class="line">send <span class="string">"exit\r"</span></span><br><span class="line">expect <span class="string">"Bye"</span></span><br><span class="line">send <span class="string">"exit\r"</span></span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+<p>导入命令第一行声明文件使用/bin/expect程序，相关命令作用如下：</p>
+<p><code>spawn</code> 为启动进程去执行命令</p>
+<p><code>expect</code> 等待一个进程的反馈，我们根据进程的反馈，再发送对应的交互命令</p>
+<p><code>send</code> 接收一个字符串参数，并将该参数发送到进程</p>
+<p><code>interact</code> 退出自动化，交由人工操作</p>
+<p>保存文件为in.sh 执行命令使用<code>expect in.sh</code></p>
+<p>整合导入和导出命令（syn.sh)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">mysqldump -h192.168.1.8 -uroot -p123456 a abc &gt; abc.sql</span><br><span class="line">sleep 1</span><br><span class="line">expect in.sh</span><br><span class="line">sleep 3</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"done"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><em>sleep可根据实际情况延长或者删除</em></p>
+</blockquote>
+<p>最后编写Dockerfile文件</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> widdpim/mysql-client</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install expect</span></span><br><span class="line"><span class="bash">WORKDIR /</span></span><br><span class="line"><span class="bash">COPY in.sh .</span></span><br><span class="line"><span class="bash">COPY syn.sh .</span></span><br><span class="line"><span class="bash">RUN chmod +x /syn.sh</span></span><br><span class="line"><span class="bash">CMD <span class="string">"./syn.sh"</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>构建镜像：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t syn_mysql .</span><br></pre></td></tr></table></figure></p>
+<p>运行容器查看效果：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run syn_mysql</span><br></pre></td></tr></table></figure></p>
+<p>输入内容：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run syn_mysql</span></span><br><span class="line">mysqldump: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">spawn bash -c mysql -h 192.168.1.8 -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 77</span><br><span class="line">Server version: 5.7.29 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use b</span></span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">source</span> /abc.sql</span></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line">......</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line">Bye</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
+<p>执行成功，将a库的abc表数据同步到了b数据库中。剩下的任务就是创建一个CornJob去定时执行容器就可以了</p>
+<h2 id="五、改进"><a href="#五、改进" class="headerlink" title="五、改进"></a>五、改进</h2><p>上边的镜像打好之后，只能固定的用于指定的数据库、表，做同步，更好的做法是将来源和目标数据库的地址、用户、密码、库、表 信息写成从环境变量中获取，这样就可以在运行容器的时候动态配置环境变量，实现通用的目的。</p>
 
       
       
@@ -220,7 +242,7 @@ var _hmt = _hmt || [];
     
     <br>
     <strong>本文链接：</strong>
-    <a href="http://jianpage.com/2017/12/28/2017/">http://jianpage.com/2017/12/28/2017/</a>
+    <a href="http://jianpage.com/2020/06/22/syn-mysql/">http://jianpage.com/2020/06/22/syn-mysql/</a>
     <br>
     <strong>版权声明：</strong>
     本作品采用
@@ -243,7 +265,19 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">k8s</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -255,7 +289,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/人生//" class="article-tag-list-link color3">人生</a>
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -310,7 +344,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://jianpage.com/2017/12/28/2017/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://jianpage.com/2020/06/22/syn-mysql/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -324,18 +358,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/01/05/jsonHandle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          在线处理json
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/15/jphelp/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">简页的灰科技（多图）</div>
+    <a href="/2020/06/12/harbor-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">虚拟机安装Harbor2.0</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +387,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于工作"><span class="toc-number">1.</span> <span class="toc-text">关于工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于家庭"><span class="toc-number">2.</span> <span class="toc-text">关于家庭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于我"><span class="toc-number">3.</span> <span class="toc-text">关于我</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、背景"><span class="toc-number">1.</span> <span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、分析"><span class="toc-number">2.</span> <span class="toc-text">二、分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、实现"><span class="toc-number">3.</span> <span class="toc-text">三、实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、测试"><span class="toc-number">4.</span> <span class="toc-text">四、测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、改进"><span class="toc-number">5.</span> <span class="toc-text">五、改进</span></a></li></ol>
                     </div>
                 </span>
             </div>
