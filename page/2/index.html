@@ -181,6 +181,111 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-square8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/10/square8/">造一个方形的轮子8--添加Aop支持</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/10/square8/" class="archive-article-date">
+  	<time datetime="2019-08-10T06:50:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>造一个方形轮子文章目录：<a href="/2019/06/18/square0/">造一个方形的轮子</a></p>
+</blockquote>
+<h3 id="01、解决遗留问题"><a href="#01、解决遗留问题" class="headerlink" title="01、解决遗留问题"></a>01、解决遗留问题</h3><p>上一篇的最后说了几个问题，没有处理500、没有处理from表单、没有处理文件上传，文件上传和表单可以算是同一个问题了，偷个懒就先不解决了，思路的话就是把文件单独封装一个接收对象放内存或临时缓存，from表单可以按参数名封装接收参数bean。这里先解决一下500的问题。</p>
+<p>程序触发500的情况是在处理Controller方法及后续调用方法的时候产生的，也就是说只要在DispatcherServlet里catch一下invoke()方法，记录一下日志并设置一下返回结果就可以了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解析url</span></span><br><span class="line">        String contextPath = req.getContextPath();</span><br><span class="line">        String httpMethod = req.getMethod();</span><br><span class="line">        String uri = req.getRequestURI();</span><br><span class="line">        <span class="comment">// 匹配到对应的controller</span></span><br><span class="line">        String controllerKey = httpMethod.toLowerCase()+<span class="string">":"</span>+uri.replace(contextPath, <span class="string">""</span>);</span><br><span class="line">        ControllerObject controllerObject = beansMap.getController(controllerKey);</span><br><span class="line">        <span class="comment">// 如果没有匹配，返回404</span></span><br><span class="line">        <span class="keyword">if</span>(controllerObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            resp.sendError(<span class="number">404</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 执行对应方法</span></span><br><span class="line">                Object obj = controllerObject.invoke(req);</span><br><span class="line">                <span class="comment">// 处理返回结果</span></span><br><span class="line">                String json;</span><br><span class="line">                <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">                    json = (String) obj;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    json = JSON.toJSONString(obj);</span><br><span class="line">                    resp.setHeader(<span class="string">"content-type"</span>, <span class="string">"application/json;charset=UTF-8"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                log.info(<span class="string">"http request path:"</span> + controllerKey);</span><br><span class="line">                log.info(<span class="string">"exec method ："</span> + controllerObject.getMethod().getName());</span><br><span class="line">                log.info(<span class="string">"response:"</span> + json);</span><br><span class="line">                resp.getWriter().print(json);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                log.error(<span class="string">"Controller invoke error! controllerKey:&#123;&#125;"</span>, controllerKey);</span><br><span class="line">                resp.sendError(<span class="number">500</span>, <span class="string">"Internal Server Error"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>日志输出错误的请求uri，并返回500错误。<br>
+        
+          <a class="article-more-a" href="/2019/08/10/square8/#more">more >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">轮子</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">square</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/10/square8/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-square7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1120,104 +1225,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-simulation_ioc_di" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/07/simulation_ioc_di/">简单模拟IOC/DI</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/07/simulation_ioc_di/" class="archive-article-date">
-  	<time datetime="2019-05-07T05:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>IOC/DI是Spring里非常重要的概念，本文简单记录一下自己模拟的IOC/DI实现原理，这里实例化Bean使用了JDK动态代理，相当于模拟了一部分Aop的概念。</p>
-<h2 id="1、创建接口"><a href="#1、创建接口" class="headerlink" title="1、创建接口"></a>1、创建接口</h2><p>业务开发大部分时候都是基于接口，这样做方便以后扩展，这里定义了一个Ai接口类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Ai</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该接口中只有一个hello方法需要实现。<br>
-        
-          <a class="article-more-a" href="/2019/05/07/simulation_ioc_di/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/07/simulation_ioc_di/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1364,15 +1371,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1404,15 +1411,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1440,10 +1447,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">k8s</a>
               </li>
             
@@ -1456,7 +1459,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Harbor</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Springcloud</a>
               </li>
             
             <div class="clearfix"></div>

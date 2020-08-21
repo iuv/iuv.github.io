@@ -181,6 +181,102 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-read_make_time_your_friend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/08/read_make_time_your_friend/">阅读--《把时间当作朋友》</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/08/read_make_time_your_friend/" class="archive-article-date">
+  	<time datetime="2018-06-08T04:35:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天读完<a href="http://zhibimo.com/read/xiaolai/ba-shi-jian-dang-zuo-peng-you/index.html" target="_blank" rel="noopener">《把时间当作朋友》</a>感慨良多，以前的自己果然读的书太少，以至于现在看到好书都只能用“真好”、“真不错”来形容。。。</p>
+<p>这本书看的是电子版，感谢作者<a href="https://baike.baidu.com/item/%E6%9D%8E%E7%AC%91%E6%9D%A5" target="_blank" rel="noopener">李笑来</a> 刚开始看名字以为是一本讲时间管理的书结果开篇就告诉我“时间是不能管理的” 难怪书名叫把时间当作朋友，用作者的观点就是时间不会为任何事左右的我们不能管理时间我们能作的就是管好自己，要学会独立思考，认识事物背后的真像，接受自己的不足，做成一件事重要的是持之以恒而不是方法。<br>
+        
+          <a class="article-more-a" href="/2018/06/08/read_make_time_your_friend/#more">more >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">非技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/阅读//" class="article-tag-list-link color3">阅读</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/08/read_make_time_your_friend/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-raspberry-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1080,105 +1176,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-jianpage-update" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/22/jianpage-update/">jfinal1.9升级3.1</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/22/jianpage-update/" class="archive-article-date">
-  	<time datetime="2017-05-22T04:29:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://jianpage.com">简页</a>上线一年多了，后端一直沿用的两年前的架构（主要都在优化前端功能，算是轻后端吧），使用的还是jfinal1.9 最近抽点时间升级到了3.1版本  记录一下遇到的问题。</p>
-<h2 id="一、配置变更"><a href="#一、配置变更" class="headerlink" title="一、配置变更"></a>一、配置变更</h2><p>路由的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">routes.setBaseViewPath(<span class="string">"/ttt"</span>);<span class="comment">//相对于webapp目录也就是webapp/ttt</span></span><br><span class="line">routes.add(<span class="string">"/u"</span>, UserController.class);</span><br></pre></td></tr></table></figure></p>
-<p>需要注意配置，模版存放的真实路径是配置的<code>BaseViewPath</code>,加<br><code>routes.add(&quot;/path&quot;,X.class);</code>里的<code>/path</code>,再加上 <code>render(&quot;aa.html&quot;);</code>里的模版,也就是<code>/ttt/path/aa.html</code></p>
-<p>过滤器入参类型有变化，改为新的就行了，方法基本没变，有变化的微调既可</p>
-<p>Validator里的字符串验证<code>validateString</code>方法调整了参数，直接去掉多余的参数就可以了<br>
-        
-          <a class="article-more-a" href="/2017/05/22/jianpage-update/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简页</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jfinal</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/jianpage-update/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1325,15 +1322,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1365,15 +1362,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1401,10 +1398,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">k8s</a>
               </li>
             
@@ -1417,7 +1410,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Harbor</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Springcloud</a>
               </li>
             
             <div class="clearfix"></div>
