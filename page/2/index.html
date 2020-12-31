@@ -181,6 +181,117 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-square9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/15/square9/">造一个方形的轮子9--编译打包</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/15/square9/" class="archive-article-date">
+  	<time datetime="2019-08-15T04:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>造一个方形轮子文章目录：<a href="/2019/06/18/square0/">造一个方形的轮子</a></p>
+</blockquote>
+<h3 id="01、解决遗留问题"><a href="#01、解决遗留问题" class="headerlink" title="01、解决遗留问题"></a>01、解决遗留问题</h3><p>上一篇的最后说要把BeansInitUtil类代码优化一下,先来弄一下这个吧，顺便把加入AOP导致多遍历了一遍目录的问题解决一下。</p>
+<p>调整的有点多，就不放代码了，写一下主要改动的文件及改动内容吧：</p>
+<p>com.jisuye.core包：</p>
+<blockquote>
+<p>BeansMap.java 全方法静态化调用静态的个各map容器</p>
+<p>BeanObject.java 添加了BeanClass记录bean类型，在加载AOP切面时使用</p>
+<p>ControllerObject.java 添加了beanKey字段，将获取Bean从初始化阶段放到调用阶段，这么做是为了去掉添加AOP功能后多的一遍目录遍历</p>
+</blockquote>
+<p>ControllerObject.java 部分代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 反射执行controller方法</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(HttpServletRequest req)</span></span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">// 延时从容器中获取对象</span></span><br><span class="line">           <span class="keyword">if</span>(object == <span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">this</span>.setObject(BeansMap.get(beanKey).getObject());</span><br><span class="line">           &#125;</span><br><span class="line">           Object o = <span class="keyword">this</span>.getMethod().invoke(<span class="keyword">this</span>.getObject(), os);</span><br><span class="line">           <span class="keyword">return</span> o;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           log.error(<span class="string">"Controller method.invoke() is error!"</span>, e);</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> SquareException(<span class="string">"Controller method.invoke() is error!"</span>, e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/08/15/square9/#more">阅读全文 >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">轮子</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">square</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/15/square9/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-square8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,7 +320,7 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解析url</span></span><br><span class="line">        String contextPath = req.getContextPath();</span><br><span class="line">        String httpMethod = req.getMethod();</span><br><span class="line">        String uri = req.getRequestURI();</span><br><span class="line">        <span class="comment">// 匹配到对应的controller</span></span><br><span class="line">        String controllerKey = httpMethod.toLowerCase()+<span class="string">":"</span>+uri.replace(contextPath, <span class="string">""</span>);</span><br><span class="line">        ControllerObject controllerObject = beansMap.getController(controllerKey);</span><br><span class="line">        <span class="comment">// 如果没有匹配，返回404</span></span><br><span class="line">        <span class="keyword">if</span>(controllerObject == <span class="keyword">null</span>)&#123;</span><br><span class="line">            resp.sendError(<span class="number">404</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 执行对应方法</span></span><br><span class="line">                Object obj = controllerObject.invoke(req);</span><br><span class="line">                <span class="comment">// 处理返回结果</span></span><br><span class="line">                String json;</span><br><span class="line">                <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">                    json = (String) obj;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    json = JSON.toJSONString(obj);</span><br><span class="line">                    resp.setHeader(<span class="string">"content-type"</span>, <span class="string">"application/json;charset=UTF-8"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                log.info(<span class="string">"http request path:"</span> + controllerKey);</span><br><span class="line">                log.info(<span class="string">"exec method ："</span> + controllerObject.getMethod().getName());</span><br><span class="line">                log.info(<span class="string">"response:"</span> + json);</span><br><span class="line">                resp.getWriter().print(json);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                log.error(<span class="string">"Controller invoke error! controllerKey:&#123;&#125;"</span>, controllerKey);</span><br><span class="line">                resp.sendError(<span class="number">500</span>, <span class="string">"Internal Server Error"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>日志输出错误的请求uri，并返回500错误。<br>
         
-          <a class="article-more-a" href="/2019/08/10/square8/#more">more >></a>
+          <a class="article-more-a" href="/2019/08/10/square8/#more">阅读全文 >></a>
         
       
       
@@ -319,7 +430,7 @@ var _hmt = _hmt || [];
 <p>6、如果返回结果是String类型直接返回，其它类型使用JSON序列化后输出</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2019/07/17/square7/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/17/square7/#more">阅读全文 >></a>
         
       
       
@@ -424,7 +535,7 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 处理关系依赖</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> map Bean容器</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">initDI</span><span class="params">(BeansMap map)</span></span>&#123;</span><br><span class="line">       List&lt;BeanObject&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       BeanObject sqlBean = <span class="keyword">null</span>;</span><br><span class="line">       <span class="comment">// 循环所有Bean处理依赖</span></span><br><span class="line">       <span class="keyword">for</span>(Map.Entry entry : map.entrySet())&#123;</span><br><span class="line">           BeanObject beanObject = (BeanObject)entry.getValue();</span><br><span class="line">           <span class="comment">// 如果已经处理过，则跳过</span></span><br><span class="line">           <span class="keyword">if</span>(list.contains(beanObject))&#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 添加到已处理列表</span></span><br><span class="line">           list.add(beanObject);</span><br><span class="line">           <span class="comment">// ....</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>简单解决了一下，添加一个已处理列表，处理之前先判断一下是否处理过，如果在已处理列表中则跳过。<br>
         
-          <a class="article-more-a" href="/2019/07/17/square6/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/17/square6/#more">阅读全文 >></a>
         
       
       
@@ -528,7 +639,7 @@ var _hmt = _hmt || [];
 <p>BeansInitUtil.java 修改loadClass方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//......上略</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loadClass</span><span class="params">(File file, Map&lt;String, BeanObject&gt; map)</span></span>&#123;</span><br><span class="line">       ....</span><br><span class="line">               <span class="comment">// 按类设置bean</span></span><br><span class="line">               map.put(beanObject.getClassName(), beanObject);</span><br><span class="line">               String simpleName = firstToLowerCase(beanObject.getSimpleName());</span><br><span class="line">       		<span class="comment">// 这里添加判断</span></span><br><span class="line">               <span class="keyword">if</span>(map.get(simpleName) != <span class="keyword">null</span>)&#123;</span><br><span class="line">                   <span class="keyword">throw</span> <span class="keyword">new</span> SquareBeanInitException(<span class="string">"There are duplicate beans ，beanName:"</span>+simpleName);</span><br><span class="line">               &#125;</span><br><span class="line">               map.put(simpleName, beanObject);</span><br><span class="line">               <span class="comment">// 按注解输入value设置bean</span></span><br><span class="line">               <span class="keyword">for</span> (Annotation annotation : annotations) &#123;</span><br><span class="line">                   String tmp_name = <span class="string">""</span>;</span><br><span class="line">                   <span class="keyword">if</span>(annotation <span class="keyword">instanceof</span> Service)&#123;</span><br><span class="line">                       tmp_name = ((Service)annotation).value();</span><br><span class="line">                   &#125; <span class="keyword">else</span> <span class="keyword">if</span>(annotation <span class="keyword">instanceof</span> Component) &#123;</span><br><span class="line">                       tmp_name = ((Component)annotation).value();</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span>(tmp_name != <span class="keyword">null</span> &amp;&amp; !tmp_name.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">                       <span class="comment">// 这里添加判断</span></span><br><span class="line">                       <span class="keyword">if</span>(map.get(tmp_name) != <span class="keyword">null</span>)&#123;</span><br><span class="line">                           <span class="keyword">throw</span> <span class="keyword">new</span> SquareBeanInitException(<span class="string">"There are duplicate beans ，beanName:"</span>+tmp_name);</span><br><span class="line">                       &#125;</span><br><span class="line">                       map.put(tmp_name, beanObject);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           log.error(<span class="string">"init bean error:&#123;&#125;"</span>, file.getPath(), e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//......下略</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/07/08/square5/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/08/square5/#more">阅读全文 >></a>
         
       
       
@@ -634,7 +745,7 @@ var _hmt = _hmt || [];
 <p>在原来的BeansInitUtil.loadClass()方法里修改以下代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">//......上略</span></span><br><span class="line">beanObject.setPackages(clzz.getPackage().toString());</span><br><span class="line">            Object obj = clzz.newInstance();</span><br><span class="line">            beanObject.setObject(obj);</span><br><span class="line">            <span class="comment">// 按接口设置bean</span></span><br><span class="line">            <span class="keyword">for</span> (Class aClass : beanObject.getInterfacs()) &#123;</span><br><span class="line">                BeanObject tmp = map.get(aClass.getName());</span><br><span class="line">                <span class="keyword">if</span>(tmp != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    beanObject.setNext(tmp);</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(aClass.getName(), beanObject);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 按类设置bean</span></span><br><span class="line">            map.put(beanObject.getClassName(), beanObject);</span><br><span class="line"><span class="comment">//......下略</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/06/29/square4/#more">more >></a>
+          <a class="article-more-a" href="/2019/06/29/square4/#more">阅读全文 >></a>
         
       
       
@@ -739,7 +850,7 @@ var _hmt = _hmt || [];
 <p>添加一个配置目录的util类,ClassesPathUtil.java:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 处理项目路径问题</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ixx</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-06-15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassesPathUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(ClassesPathUtil.class);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 项目目录(.../classes)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String projectPath;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 静态资源目录(.../classes/public)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String publicPath;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassesPathUtil</span><span class="params">(Class clzz)</span></span>&#123;</span><br><span class="line">        String basePath = clzz.getResource(<span class="string">""</span>).getPath();</span><br><span class="line">        <span class="comment">//  ..../classes</span></span><br><span class="line">        projectPath = basePath.substring(<span class="number">0</span>, basePath.indexOf(<span class="string">"classes"</span>)+<span class="number">7</span>);</span><br><span class="line">        publicPath = setPublic(projectPath, <span class="string">"/public"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">setPublic</span><span class="params">(String basePath, String path)</span></span>&#123;</span><br><span class="line">        File publicFile = <span class="keyword">new</span> File(basePath+path);</span><br><span class="line">        <span class="keyword">if</span>(!publicFile.exists())&#123;</span><br><span class="line">            publicFile.mkdirs();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> basePath+path;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getProjectPath</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> projectPath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPublicPath</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> publicPath;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/06/26/square3/#more">more >></a>
+          <a class="article-more-a" href="/2019/06/26/square3/#more">阅读全文 >></a>
         
       
       
@@ -846,7 +957,7 @@ var _hmt = _hmt || [];
 <p>index.html</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Whitelabel Error Page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>This application has no explicit mapping for /error, so you are seeing this as a fallback.<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>There was an unexpected error (type=Not Found, status=404).<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>No message available<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/06/24/square2/#more">more >></a>
+          <a class="article-more-a" href="/2019/06/24/square2/#more">阅读全文 >></a>
         
       
       
@@ -949,7 +1060,7 @@ var _hmt = _hmt || [];
 <h3 id="01、引入容器依赖"><a href="#01、引入容器依赖" class="headerlink" title="01、引入容器依赖"></a>01、引入容器依赖</h3><p>先创建一个maven项目square，然后想一下，如果要自己造一下轮子那么第一步添加的功能是什么呢?<br>我的第一反应就是要像Springboot一样，单jar包启动，不用在打包单独部署到tomcat里了。<br>那么就需要为这个方形的轮子嵌入一个Web运行容器，就用现成的tomcat-embed就可以了<br>添加pom.xml引用：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">       ......</span><br><span class="line">       <span class="tag">&lt;<span class="name">tomcat-version</span>&gt;</span>9.0.8<span class="tag">&lt;/<span class="name">tomcat-version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">       ......</span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;tomcat-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-util<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;tomcat-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;tomcat-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/06/20/square1/#more">more >></a>
+          <a class="article-more-a" href="/2019/06/20/square1/#more">阅读全文 >></a>
         
       
       
@@ -1051,7 +1162,7 @@ var _hmt = _hmt || [];
 <p>纸上学来终觉浅，于是乎想换个思路，如果从零开始造（抄）一个轮子，那一定会遇到很多问题，带着问题再去看，也许会容易吧（也许并不容易…）</p>
 <p>因为是第一次造轮子，造出来的东西可以想像的到有多粗糙。反正也不能跑那就定位造一个方形的轮子吧。<br>
         
-          <a class="article-more-a" href="/2019/06/18/square0/#more">more >></a>
+          <a class="article-more-a" href="/2019/06/18/square0/#more">阅读全文 >></a>
         
       
       
@@ -1099,103 +1210,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/06/18/square0/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-httpclientspool" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/05/httpclientspool/">HttpClient连接池</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/05/httpclientspool/" class="archive-article-date">
-  	<time datetime="2019-06-05T04:16:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、连接池的作用"><a href="#一、连接池的作用" class="headerlink" title="一、连接池的作用"></a>一、连接池的作用</h2><p>HttpClients连接池可以方便HTTP请求复用底层TCP连接，前提是同一Route下的请求，并且服务端支持Keep-Alive，当然现在服务器Keep-Alive基本上是默认配置了，如果服务端是自己实现的则需要手动设置一下。</p>
-<p>在使用过程中发现连接池并不是万能解决方案，各别情况下效果没有直接使用URL构造请求来的快。</p>
-<h2 id="二、创建连接池"><a href="#二、创建连接池" class="headerlink" title="二、创建连接池"></a>二、创建连接池</h2><p>直接使用了HttpClient工具包，先在pom.xml里添加引用：<br>
-        
-          <a class="article-more-a" href="/2019/06/05/httpclientspool/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">连接池</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/05/httpclientspool/">阅读全文 >></a>
         </p>
       
 
@@ -1323,14 +1337,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
             
@@ -1347,7 +1353,19 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">gitbook</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1360,10 +1378,6 @@ var _hmt = _hmt || [];
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1383,15 +1397,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1411,15 +1425,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">

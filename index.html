@@ -181,6 +181,95 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/31/2020/">2020</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/31/2020/" class="archive-article-date">
+  	<time datetime="2020-12-31T10:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="不说再见"><a href="#不说再见" class="headerlink" title="不说再见"></a>不说再见</h1><p>2020年再过几个小时就要过去了<br>这应该是我经历过的最安静的跨年<br>这份安静与年龄无关<br>与地点无关<br>与心情无关<br>天气竞也异常的配合这份安静<br>窗外的风撕裂冰冷的夜<br>带走这寒心的2020<br>不说再见</p>
+
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/人生//" class="article-tag-list-link color3">人生</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/31/2020/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-springcloud-k8s-demo1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -217,7 +306,7 @@ var _hmt = _hmt || [];
 <p>最后在写部署文件的Deployment.yaml中将imagePullPolicy设置为IfNotPresent或Never（不去远程拉取，使用本地）</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">extensions/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">service-customer</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">service-customer</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">service-customer</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">service-customer</span></span><br><span class="line"><span class="attr">        imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - containerPort:</span> <span class="number">8080</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/08/20/springcloud-k8s-demo1/#more">more >></a>
+          <a class="article-more-a" href="/2020/08/20/springcloud-k8s-demo1/#more">阅读全文 >></a>
         
       
       
@@ -321,7 +410,7 @@ var _hmt = _hmt || [];
 </ol>
 <p>导出可以使用mysqldump 去实现<br>导入只能使用mysql客户端登录成功后 使用source 命令导入数据<br>因为要程序去自动化处理，所以登录数据库并导入数据的动作也要使用脚本去处理<br>可以使用 expect 程序去实现自动交互<br>
         
-          <a class="article-more-a" href="/2020/06/22/syn-mysql/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/22/syn-mysql/#more">阅读全文 >></a>
         
       
       
@@ -430,7 +519,7 @@ var _hmt = _hmt || [];
 <p>切换不启动桌面：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">set</span>-default multi-user.target</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/06/12/harbor-install/#more">more >></a>
+          <a class="article-more-a" href="/2020/06/12/harbor-install/#more">阅读全文 >></a>
         
       
       
@@ -532,7 +621,7 @@ var _hmt = _hmt || [];
 <p>不过下载链接里只有windows版本的，不支持mac，本地也没装windows的虚拟机，所以没有机会尝试</p>
 <p>另外一个是一个在线的工具: <a href="https://word2md.com/" target="_blank" rel="noopener">https://word2md.com/</a><br>试用了一个还不错 基本够用<br>看一上效果，word文档：<br>
         
-          <a class="article-more-a" href="/2020/03/19/word2md/#more">more >></a>
+          <a class="article-more-a" href="/2020/03/19/word2md/#more">阅读全文 >></a>
         
       
       
@@ -636,7 +725,7 @@ var _hmt = _hmt || [];
 <li>显示不跳转<br>这时候我才发现，关于Summary.md文件的说明太少了，连官网上也只有寥寥几句（也有可能是我没找到）<br>然后我一边查资料，一边自己尝试，算是把我想要的实现了，这里只是简单的记录一下，仅供参考<br><strong>—–文末有福利，如果你是搜索来到这篇文章的话</strong></li>
 </ul>
         
-          <a class="article-more-a" href="/2020/03/11/gitbook_summary/#more">more >></a>
+          <a class="article-more-a" href="/2020/03/11/gitbook_summary/#more">阅读全文 >></a>
         
       
       
@@ -733,7 +822,7 @@ var _hmt = _hmt || [];
 <h3 id="一、工具类"><a href="#一、工具类" class="headerlink" title="一、工具类"></a>一、工具类</h3><h6 id="1、Chrome"><a href="#1、Chrome" class="headerlink" title="1、Chrome"></a>1、Chrome</h6><p>下载地址：<a href="https://www.google.com/intl/zh-CN/chrome/" target="_blank" rel="noopener">https://www.google.com/intl/zh-CN/chrome/</a><br>首先安装这个，个人感觉比自带的浏览器好用</p>
 <h6 id="2、uTools"><a href="#2、uTools" class="headerlink" title="2、uTools"></a>2、uTools</h6><p>下载地址：<a href="https://u.tools/" target="_blank" rel="noopener">https://u.tools/</a><br>快捷操作工具，可以去官网详细了解下，很好用，安装好直接停用系统自带的『聚焦』搜索功能，在设置-&gt;键盘-&gt;快捷键中勾掉显示『聚焦』搜索<br>然后设置uTools的快捷键为Command+Space<br>在uTools的设置中，安装所需插件并进行相关设置（json、剪切板、二维码、网页快开这几个很实用）<br>
         
-          <a class="article-more-a" href="/2019/12/25/mac_init/#more">more >></a>
+          <a class="article-more-a" href="/2019/12/25/mac_init/#more">阅读全文 >></a>
         
       
       
@@ -830,7 +919,7 @@ var _hmt = _hmt || [];
 <p>查看本地镜像：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2019/11/19/nginx_mirror/#more">more >></a>
+          <a class="article-more-a" href="/2019/11/19/nginx_mirror/#more">阅读全文 >></a>
         
       
       
@@ -940,7 +1029,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>指定不用静态目录重新设置一下就可以，之前一直使用的是随机生成的临时目录，而且还没有删除，时间长了会有很多垃圾目录，看了SpringBoot的源码，原来文件还可以在JVM销毁的时候删除，果然Java里还有很多可以学习的地方，直接上代码：<br>
         
-          <a class="article-more-a" href="/2019/09/20/square11/#more">more >></a>
+          <a class="article-more-a" href="/2019/09/20/square11/#more">阅读全文 >></a>
         
       
       
@@ -1058,7 +1147,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>这几个问题其实是做之前有大体思路，但做下来发现有些跟写之前想的确实不一样，下边我会尽量记录一下遇到的问题，及解决过程<br>
         
-          <a class="article-more-a" href="/2019/09/09/square10/#more">more >></a>
+          <a class="article-more-a" href="/2019/09/09/square10/#more">阅读全文 >></a>
         
       
       
@@ -1106,117 +1195,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/09/square10/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-square9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/15/square9/">造一个方形的轮子9--编译打包</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/15/square9/" class="archive-article-date">
-  	<time datetime="2019-08-15T04:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>造一个方形轮子文章目录：<a href="/2019/06/18/square0/">造一个方形的轮子</a></p>
-</blockquote>
-<h3 id="01、解决遗留问题"><a href="#01、解决遗留问题" class="headerlink" title="01、解决遗留问题"></a>01、解决遗留问题</h3><p>上一篇的最后说要把BeansInitUtil类代码优化一下,先来弄一下这个吧，顺便把加入AOP导致多遍历了一遍目录的问题解决一下。</p>
-<p>调整的有点多，就不放代码了，写一下主要改动的文件及改动内容吧：</p>
-<p>com.jisuye.core包：</p>
-<blockquote>
-<p>BeansMap.java 全方法静态化调用静态的个各map容器</p>
-<p>BeanObject.java 添加了BeanClass记录bean类型，在加载AOP切面时使用</p>
-<p>ControllerObject.java 添加了beanKey字段，将获取Bean从初始化阶段放到调用阶段，这么做是为了去掉添加AOP功能后多的一遍目录遍历</p>
-</blockquote>
-<p>ControllerObject.java 部分代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 反射执行controller方法</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> req</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(HttpServletRequest req)</span></span>&#123;</span><br><span class="line">       <span class="comment">//...</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">// 延时从容器中获取对象</span></span><br><span class="line">           <span class="keyword">if</span>(object == <span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">this</span>.setObject(BeansMap.get(beanKey).getObject());</span><br><span class="line">           &#125;</span><br><span class="line">           Object o = <span class="keyword">this</span>.getMethod().invoke(<span class="keyword">this</span>.getObject(), os);</span><br><span class="line">           <span class="keyword">return</span> o;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           log.error(<span class="string">"Controller method.invoke() is error!"</span>, e);</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> SquareException(<span class="string">"Controller method.invoke() is error!"</span>, e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/15/square9/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">轮子</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">square</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/15/square9/">阅读全文 >></a>
         </p>
       
 
@@ -1344,14 +1322,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
             
@@ -1368,7 +1338,19 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">gitbook</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1381,10 +1363,6 @@ var _hmt = _hmt || [];
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1404,15 +1382,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1432,15 +1410,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">

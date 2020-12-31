@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="简页&amp;blog">
 <meta property="og:description" content="一、本文示例简单实现一个注册中心两个互相调用服务的SpringCloud应用，制作镜像并在k8s环境部署 本地环境：  minikube v1.6.2 java 8 SpringCloud 2.3.2-RELEASE  为保证minikube中可直接使用本地构建的镜像，需要行进行如下设置，使本地docker命令连接到minikube环境中 执行命令： 1eval $(minikube docker">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-21T07:57:18.039Z">
+<meta property="og:updated_time" content="2020-11-04T06:55:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes 部署 SpringCloud应用（一）">
 <meta name="twitter:description" content="一、本文示例简单实现一个注册中心两个互相调用服务的SpringCloud应用，制作镜像并在k8s环境部署 本地环境：  minikube v1.6.2 java 8 SpringCloud 2.3.2-RELEASE  为保证minikube中可直接使用本地构建的镜像，需要行进行如下设置，使本地docker命令连接到minikube环境中 执行命令： 1eval $(minikube docker">
@@ -221,7 +221,7 @@ var _hmt = _hmt || [];
 <p>service-provider： 服务提供方</p>
 <p>service-customer：服务调用方</p>
 <blockquote>
-<p>下面挑重点说一下，完事代码文末有github地址</p>
+<p>下面挑重点说一下，完整代码文末有github地址</p>
 </blockquote>
 <h3 id="1）eureka注册中心"><a href="#1）eureka注册中心" class="headerlink" title="1）eureka注册中心"></a>1）eureka注册中心</h3><p>pom.xml:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
@@ -398,6 +398,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2020/12/31/2020/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2020
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/06/22/syn-mysql/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">使用Docker同步mysql数据</div>
@@ -445,7 +454,28 @@ var _hmt = _hmt || [];
   
 
   
-
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+        el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "uOGTrLR9Y1CxLRCQQCrRGxbA-gzGzoHsz",
+            app_key: "zUJoHJYmTi2YEFukVAQ4wX8C",
+            placeholder: "欢迎留言~~",
+            avatar:"mp"
+        });
+    }
+</script>
+    </section>
+  
   
 
 
@@ -540,14 +570,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
             
@@ -564,7 +586,19 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">gitbook</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -577,10 +611,6 @@ var _hmt = _hmt || [];
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -600,15 +630,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -628,15 +658,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">

@@ -181,6 +181,103 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-httpclientspool" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/05/httpclientspool/">HttpClient连接池</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/05/httpclientspool/" class="archive-article-date">
+  	<time datetime="2019-06-05T04:16:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、连接池的作用"><a href="#一、连接池的作用" class="headerlink" title="一、连接池的作用"></a>一、连接池的作用</h2><p>HttpClients连接池可以方便HTTP请求复用底层TCP连接，前提是同一Route下的请求，并且服务端支持Keep-Alive，当然现在服务器Keep-Alive基本上是默认配置了，如果服务端是自己实现的则需要手动设置一下。</p>
+<p>在使用过程中发现连接池并不是万能解决方案，各别情况下效果没有直接使用URL构造请求来的快。</p>
+<h2 id="二、创建连接池"><a href="#二、创建连接池" class="headerlink" title="二、创建连接池"></a>二、创建连接池</h2><p>直接使用了HttpClient工具包，先在pom.xml里添加引用：<br>
+        
+          <a class="article-more-a" href="/2019/06/05/httpclientspool/#more">阅读全文 >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">连接池</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/05/httpclientspool/">阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-simulation_ioc_di" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -206,7 +303,7 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Ai</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>该接口中只有一个hello方法需要实现。<br>
         
-          <a class="article-more-a" href="/2019/05/07/simulation_ioc_di/#more">more >></a>
+          <a class="article-more-a" href="/2019/05/07/simulation_ioc_di/#more">阅读全文 >></a>
         
       
       
@@ -304,7 +401,7 @@ var _hmt = _hmt || [];
 <p><style>.xtd{border:1px #eee double;text-align:center;width:40px;}</style></p>
 <p><table class="xtd" style="width:160px;border:1px #eee double;"> <tr> <td>1</td><td>2</td><td>3</td><td>4</td> </tr> <tr> <td>12</td><td>13</td><td>14</td><td>5</td> </tr> <tr> <td>11</td><td>16</td><td>15</td><td>6</td> </tr> <tr> <td>10</td><td>9</td><td>8</td><td>7</td> </tr> </table><br>图1-1</p>
         
-          <a class="article-more-a" href="/2019/03/16/shape_traversal/#more">more >></a>
+          <a class="article-more-a" href="/2019/03/16/shape_traversal/#more">阅读全文 >></a>
         
       
       
@@ -401,7 +498,7 @@ var _hmt = _hmt || [];
 <h2 id="一、演示会"><a href="#一、演示会" class="headerlink" title="一、演示会"></a>一、演示会</h2><p>演示会的具体时间在计划会之前就已经定下了，不出意外的话是不会变的，在演示会之前一般会有一个预演的会，是团队内部先预演一遍演示会整体流程，然后再去给PO演示本次迭代的成果。</p>
 <p>演示会的具体内容是给大家一个展示自己迭代内成果的平台，理论上要求每个人都演示，当然比较尴尬的是像后台开发这样的工作基本没有啥能可视会演示的东西，所以大部分时间我们是说一下自己的代码，做了什么东西，App、web、UI 都比较好说了直接演示自己的开发的界面就行了。<br>
         
-          <a class="article-more-a" href="/2018/11/10/scrum_4/#more">more >></a>
+          <a class="article-more-a" href="/2018/11/10/scrum_4/#more">阅读全文 >></a>
         
       
       
@@ -501,7 +598,7 @@ var _hmt = _hmt || [];
 <h2 id="一、拖任务"><a href="#一、拖任务" class="headerlink" title="一、拖任务"></a>一、拖任务</h2><p>计划会结束后，大家就各自把接下来要去完成的任务从”Open” 状态拖放到”InProgress”状态<br>然后去做这个任务的内容，完成会将任务拖放到”Done”里，并填写完成任务真实使用时间    然后再将下一个要做的任务从”Open”状态拖放到”In Progress”状态，整体的节奏就是把任务一个一个的完成。  </p>
 <p>上边说的流程是正常的流程，有时候可能由于种种原因任务中断，则需要在最后迭代结束时将任务放到backlog里。<br>
         
-          <a class="article-more-a" href="/2018/10/30/scrum_3/#more">more >></a>
+          <a class="article-more-a" href="/2018/10/30/scrum_3/#more">阅读全文 >></a>
         
       
       
@@ -598,7 +695,7 @@ var _hmt = _hmt || [];
 <h2 id="零、前期准备"><a href="#零、前期准备" class="headerlink" title="零、前期准备"></a>零、前期准备</h2><p>最开始SM要去找PO确定本次迭代的以下内容：<br>1、具体目标（所有的后续工作，计划都是基于这些目标去拆分的）<br>2、迭代周期<br>3、站会、演示会、总结会具体时间（站会每天开，演示会、总结会迭代最后一天）  </p>
 <h2 id="一、用户故事-任务拆分"><a href="#一、用户故事-任务拆分" class="headerlink" title="一、用户故事+任务拆分"></a>一、用户故事+任务拆分</h2><p>前期主要是PO整理需求并梳理成用户故事，把需求拆分为一个一个用户故事后，研发团队会根据用户故事（需求）拆分各自的任务（card），任务的记录形式没有强制限制，可以使用便签纸或Excel等具备记录功能的工具，当然为了后续方便大家同步进度建议采用专业的工具，我们团队使用的是YouTrack（JetBrains出品10人以下免费使用），其实便签纸也是很方便的一种形式可以直接粘在白板上，当然要有硬件条件支持，这个阶段是全员参与的，拆分完毕后，SM组织开计划会。  </p>
         
-          <a class="article-more-a" href="/2018/10/22/scrum_2/#more">more >></a>
+          <a class="article-more-a" href="/2018/10/22/scrum_2/#more">阅读全文 >></a>
         
       
       
@@ -697,7 +794,7 @@ var _hmt = _hmt || [];
 <p>PO: Product Owner 产品负责人，主要负责产品导向<br>SM：Scrum Master 迭代负责人<br>研发团队：Scrum小组内除PO以及SM外的其它人  </p>
 </blockquote>
         
-          <a class="article-more-a" href="/2018/10/11/scrum_1/#more">more >></a>
+          <a class="article-more-a" href="/2018/10/11/scrum_1/#more">阅读全文 >></a>
         
       
       
@@ -793,7 +890,7 @@ var _hmt = _hmt || [];
         <p>最近有一个老系统，需要替换，写了新项目接口，但无法获取所有正在使用的接口（全部修改有100多个），所以只从日志中分析出和的几个做了修改，剩下的出了一个方案，在新项目中找不到对应接口的情况下，会访问老系统去获取数据（新老系统并存）</p>
 <p>新项目使用SpringBoot开发，超初使用拦截器修改失败，拦截到的response 已经被写入并关闭流，也就不能再修改写入的返回值，于是考虑用Filter去实现，发现对正常的请求（返回状态200）修改起来没有任何问题，但对于不存在的接口，Response中标记了ErrorState为1，所以即使再使用 response.setStatus(200) 也不能修改返回的内容，<br>最后使用了一个暴力的解法，用反射获取Response对象属性并修改其值，最终代码如下：<br>
         
-          <a class="article-more-a" href="/2018/09/18/springboot-404-200/#more">more >></a>
+          <a class="article-more-a" href="/2018/09/18/springboot-404-200/#more">阅读全文 >></a>
         
       
       
@@ -891,7 +988,7 @@ var _hmt = _hmt || [];
 <p>启动后可以使用 <code>docker ps</code> 查看运行中的docker容器</p>
 <h2 id="二、构建服务提供方"><a href="#二、构建服务提供方" class="headerlink" title="二、构建服务提供方"></a>二、构建服务提供方</h2><h4 id="创建maven项目-dubbo-provider-添加依赖："><a href="#创建maven项目-dubbo-provider-添加依赖：" class="headerlink" title="创建maven项目 dubbo-provider 添加依赖："></a>创建maven项目 <code>dubbo-provider</code> 添加依赖：</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.9.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.gitee.reger<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-dubbo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2018/09/07/dubbo-demo/#more">more >></a>
+          <a class="article-more-a" href="/2018/09/07/dubbo-demo/#more">阅读全文 >></a>
         
       
       
@@ -1019,11 +1116,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -1045,102 +1142,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/09/04/read_up/">阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-read_scrum_xp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/09/read_scrum_xp/">阅读--《硝烟中的Scrum和XP》</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/09/read_scrum_xp/" class="archive-article-date">
-  	<time datetime="2018-07-09T09:35:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>公司管理方式改革，实施Scrum+kanban 已经有一段时间了，虽然全程参与其中，不过一些系统的东西还是有点缺失，听过几次公司组织的演讲效果明显但过于单一，落实到我们这的时候已经是一个具体的方案了，所以找了点时间看了看这本书，篇幅不大，看的挺快的，每天看一点不到一周就看完了，内容确实不错，结合作者多年的实践经验，对Scrum的各个阶段，关键节点，都有详细的说明，关于计划会，站会，SoS会该如何去开，作者除了讲解他们团队真实的例子外还提供了一些其它方式供参考，说到底Scrum是一套理论框架，应用他的目的就是合理规划团队，及迭代目标。真正的实践肯定会结合公司的实际情况做调整，当然就像书里说的，适当调整可以，但改动过大，可能会失去Scrum的本意。</p>
-<p>我们公司现在实施的Scrum+kanban是在作者提出的方案上进一步优化得来的，当然这个优化也不是我们做的，是很我前辈实践得出来的，我们只是结合我们的情况做了调整， kanban的方式与Scrum不冲突，部分重叠的地方直接采用Scrum的流程就可以了kanban在这里充当的是一个工具，一个辅助我们使用Scrum的工具。</p>
-<p>我们目前的团队算是刚刚过渡到Scrum，很多东西我也还在学习，这本书给我的帮助很大，至少算是系统的了解了一下Scrum。</p>
-<p>后续等我们团队实施的Scurm稳定了，我想再写点内容分享出来，一方面算是自己的总结，如果能帮助到别人当然更好，毕竟国内实施Scrum的团队确实不多。</p>
-
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/阅读//" class="article-tag-list-link color3">阅读</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/09/read_scrum_xp/">阅读全文 >></a>
         </p>
       
 
@@ -1268,14 +1269,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
             
@@ -1292,7 +1285,19 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">gitbook</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1305,10 +1310,6 @@ var _hmt = _hmt || [];
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1328,15 +1329,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -1356,15 +1357,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
             
               <li class="article-tag-list-item">

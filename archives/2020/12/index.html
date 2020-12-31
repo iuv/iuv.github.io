@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://jianpage.com">
-  <title>简页&amp;blog</title>
+  <title>Archives: 2020/12 | 简页&amp;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原始json：{&quot;ok&quot;:true,&quot;data&quot;:{&quot;page&quot;:0,&quot;size&quot;:30,&quot;content&quot;:[{&quot;id&quot;:1,&quot;user&quot;:{&quot;username&quot;:&quot;测试1&quot;,&quot;phone&quot;:&quot;11111111111&quot;},&quot;createDate&quot;:&quot;2020-12-23&quot;},{&quot;id&quot;:2,&quot;user&quot;:{&quot;username&quot;:&quot;测试2&quot;,&quot;phone&quot;:&quot;11">
+  <meta name="description" content="生活不只眼前的苟且,还有远方的苟且">
 <meta property="og:type" content="website">
 <meta property="og:title" content="简页&amp;blog">
-<meta property="og:url" content="http://jianpage.com/static/jsonHandle.html">
+<meta property="og:url" content="http://jianpage.com/archives/2020/12/index.html">
 <meta property="og:site_name" content="简页&amp;blog">
-<meta property="og:description" content="原始json：{&quot;ok&quot;:true,&quot;data&quot;:{&quot;page&quot;:0,&quot;size&quot;:30,&quot;content&quot;:[{&quot;id&quot;:1,&quot;user&quot;:{&quot;username&quot;:&quot;测试1&quot;,&quot;phone&quot;:&quot;11111111111&quot;},&quot;createDate&quot;:&quot;2020-12-23&quot;},{&quot;id&quot;:2,&quot;user&quot;:{&quot;username&quot;:&quot;测试2&quot;,&quot;phone&quot;:&quot;11">
+<meta property="og:description" content="生活不只眼前的苟且,还有远方的苟且">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-12T06:57:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简页&amp;blog">
-<meta name="twitter:description" content="原始json：{&quot;ok&quot;:true,&quot;data&quot;:{&quot;page&quot;:0,&quot;size&quot;:30,&quot;content&quot;:[{&quot;id&quot;:1,&quot;user&quot;:{&quot;username&quot;:&quot;测试1&quot;,&quot;phone&quot;:&quot;11111111111&quot;},&quot;createDate&quot;:&quot;2020-12-23&quot;},{&quot;id&quot;:2,&quot;user&quot;:{&quot;username&quot;:&quot;测试2&quot;,&quot;phone&quot;:&quot;11">
+<meta name="twitter:description" content="生活不只眼前的苟且,还有远方的苟且">
   
     <link rel="alternative" href="/atom.xml" title="简页&amp;blog" type="application/atom+xml">
   
@@ -180,229 +179,71 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-<meta charset="utf-8">
-<meta http-equiv="content-language" content="zh-CN">
-    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
-</head>
-<body>
-  <div id="err" style="font-size:26px;color:red;"></div>
-  <div>原始json：<textarea id="in" cols="100" rows="10">{"ok":true,"data":{"page":0,"size":30,"content":[{"id":1,"user":{"username":"测试1","phone":"11111111111"},"createDate":"2020-12-23"},{"id":2,"user":{"username":"测试2","phone":"11111111111"},"createDate":"2020-12-23"},{"id":3,"user":{"username":"测试3","phone":"11111111111"},"createDate":"2020-12-23"},{"id":4,"user":{"username":"测试4","phone":"11111111111"},"createDate":"2020-12-23"},{"id":5,"user":{"username":"测试5","phone":"11111111111"},"createDate":"2020-12-23"},{"id":6,"user":{"username":"测试6","phone":"11111111111"},"createDate":"2020-12-23"}]}}
-  </textarea></div>
-  <br>
-  <div>提取规则：<input id="gz" style="width:400px" value="data/content/*/user/username"></div>
-  <div>输出模版：<input id="tpl" style="width:400px;" value="insert into test(a,b,c) values('$xx','username','password');"></div>
-  <br>
-  <div>输出内容：<textarea id="out" cols="100" rows="10"></textarea></div>
-  <button onclick="exec()" style="width:200px;height:80px;">处理并复制</button>
-  <script type="text/jscript">
-  var _OUT = "";
-  function exec(){
-    _OUT = "";
-    $("#err").html("");
-    var i = $("#in").val();
-    var gz = $("#gz").val();
-    var tpl = $("#tpl").val();
-    var json;
-    try{
-      json = eval("("+i+")");
-    } catch(e){
-      $("#err").html("json格式错误");
-    }
-    var gzs = gz.split("/");
-    deep(json, gzs, 0, tpl);
-    var out = $("#out");
-    out.val(_OUT);
-    out.focus();
-    out.select();
-    document.execCommand('copy');
-  }
-  function deep(data,gzs,index,tpl){
-    data = data[gzs[index]];
-    if(gzs[++index] == "*"){
-        echo(data, gzs, index, tpl);
-    } else {
-      if(gzs.length == index){
-        _OUT += tpl.replace("$xx", data)+"\n";
-      } else {
-        deep(data, gzs, index, tpl);
-      }
-    }
-  }
-  function echo(data,gzs,index,tpl){
-    if(gzs.length == index){
-      for(var i = 0; i< data.length; i++){
-        _OUT += tpl.replace("$xx", data[i])+"\n";
-      }
-    } else {
-      for(var i = 0; i< data.length; i++){
-        deep(data[i], gzs, index+1, tpl);
-      }
-    }
-  }
-  </script>
-</body>
-<html>
-</html></html>
-      
-      
-
-  <div class="declare">
-    <strong>本文作者：</strong>
     
-      ixx
-    
-    <br>
-    <strong>本文链接：</strong>
-    <a href="http://jianpage.com/static/jsonHandle.html">http://jianpage.com/static/jsonHandle.html</a>
-    <br>
-    <strong>版权声明：</strong>
-    本作品采用
-    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    进行许可。转载请注明出处！
-    
-      <br>
-      <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="/images/by-nc-sa.png"/></a>
-    
-  </div>
-
-
-      
-    </div>
-    <div class="article-info article-info-index">
       
       
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/12/31/2020/" class="archive-article-date">
+  	<time datetime="2020-12-31T10:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-31</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/12/31/2020/">2020</a>
+    </h1>
+  
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://jianpage.com/static/jsonHandle.html" alt="微信分享二维码">
-    </div>
-</div>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/人生//" class="article-tag-list-link color3">人生</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    目录，不存在的…
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-
-  
-
-  
-
   
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-        el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "uOGTrLR9Y1CxLRCQQCrRGxbA-gzGzoHsz",
-            app_key: "zUJoHJYmTi2YEFukVAQ4wX8C",
-            placeholder: "欢迎留言~~",
-            avatar:"mp"
-        });
-    }
-</script>
-    </section>
+    </div></section>
   
-  
+
+    
 
 
           </div>
@@ -426,7 +267,7 @@ var _hmt = _hmt || [];
 		mathjax: false,
 		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
