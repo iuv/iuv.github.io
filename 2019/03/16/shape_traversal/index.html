@@ -100,8 +100,6 @@ var _hmt = _hmt || [];
 				
 					<a class="github" target="_blank" href="https://github.com/iuv" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="gitlab" target="_blank" href="https://coding.net/u/ixx" title="gitlab"><i class="icon-gitlab"></i></a>
-		        
 					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
 					<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/0cae014c01c6" title="jianshu"><i class="icon-jianshu"></i></a>
@@ -146,8 +144,6 @@ var _hmt = _hmt || [];
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/iuv" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="gitlab" target="_blank" href="https://coding.net/u/ixx" title="gitlab"><i class="icon-gitlab"></i></a>
 			        
 						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
@@ -199,6 +195,14 @@ var _hmt = _hmt || [];
         
       </header>
     
+    <!-- 文章阅读量 -->
+    
+      <div style="color: #9c9c9c;margin: -20px 62px 10px 0;text-align: right;">
+        |阅读量：
+        <span id="/2019/03/16/shape_traversal/" class="pageViews" data-flag-title="回形遍历二维数组-递归法"></span>次  
+      </div>
+      
+  <!--文章阅读量end-->
     <div class="article-entry" itemprop="articleBody">
       
         <p>回形遍历二维数组一般都会使用循环加数组下标操作实现,实现难度不大但不好理解<br>我觉得使用递归法实现更好理解一些,首先拆解问题.</p>
@@ -437,13 +441,96 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 ixx
+    		&copy; 2021 ixx
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
+  
+	<!-- 文章阅读数 -->
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script type="text/javascript">
+if(true){
+    var leancloud_app_id  = 'uOGTrLR9Y1CxLRCQQCrRGxbA-gzGzoHsz';
+    var leancloud_app_key = 'zUJoHJYmTi2YEFukVAQ4wX8C';
+    AV.init({
+        appId: leancloud_app_id,
+        appKey: leancloud_app_key
+    });
+    var pageViewsLength = $(".pageViews").length;
+    var isIndex = $(".pageViews").length > 1 ?true:false;
+    function showTime() {
+        var Pageview = AV.Object.extend("Pageview");
+        if(isIndex){
+            $(".pageViews").each(function(){
+                showPageViewsNum($(this), Pageview);
+            });
+        }else{
+            addPageViewsNum($(".pageViews"));
+        }
+    }
+    //仅显示阅读量
+    function showPageViewsNum(ele, Pageview){
+        var id = ele.attr('id').trim();
+        var query = new AV.Query("Pageview");
+        query.equalTo("post_id", id);
+        query.descending('createdAt');
+        query.limit(1);
+        query.find().then(function (results) {
+            $(document.getElementById(id)).text(results && results.length > 0?  results[0].get("count") : '0');
+        }, function (error) {
+             $(document.getElementById(id)).text('0');
+        });
+    }
+    //追加并显示阅读量
+    function addPageViewsNum(ele){
+        var id = ele.attr('id').trim();
+        var title = ele.attr('data-flag-title').trim();
+        var query = new AV.Query("Pageview");
+        query.equalTo("post_id", id);
+        query.descending('createdAt');
+        query.limit(1);
+        query.find().then(function (results) {
+            if (results.length == 0) {
+               saveNewPageview(id, title);
+               return;
+            }
+            var pageview = results[0];
+            var count = pageview.get("count");
+            count++;
+            pageview.set("count", count);
+            pageview.set("title", title);
+            pageview.save().then(function (pageview) {
+                $(document.getElementById(id)).text(count);
+            })
+        }, function (error) {
+            saveNewPageview(id, title);
+        })
+    }
+
+    function saveNewPageview(id, title) {
+       var Pageview = AV.Object.extend("Pageview");
+       var query = new Pageview;
+       query.save({
+           post_id: id,
+           title: title,
+           count: 1
+       }).then(function (pageview) {
+           $(document.getElementById(id)).text(pageview.count);
+       }, function (error) {
+       });
+
+    }
+
+    if(pageViewsLength){ //此处判断等于 1 在执行 可去除循环
+        showTime();
+    }
+}
+</script>
+  
 </footer>
     </div>
     <script>
@@ -549,6 +636,14 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">简页</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
@@ -565,22 +660,6 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jfinal</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">简页</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
@@ -590,6 +669,14 @@ var _hmt = _hmt || [];
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -641,6 +728,10 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Harbor</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
             
@@ -649,19 +740,15 @@ var _hmt = _hmt || [];
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">简单聊聊</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Harbor</a>
               </li>
             
               <li class="article-tag-list-item">
